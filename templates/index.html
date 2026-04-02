@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Generator</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🔐 Password Generator</h1>
+    <p class="subtitle">Create strong and secure passwords instantly</p>
+
+    <form method="POST">
+        <div class="input-group">
+            <label>Password Length</label><br>
+            <input type="number" name="length" min="4" max="30" value="10" required>
+        </div>
+
+        <div class="options">
+            <label><input type="checkbox" name="uppercase" checked> A-Z (Uppercase)</label><br>
+            <label><input type="checkbox" name="digits" checked> 0-9 (Numbers)</label><br>
+            <label><input type="checkbox" name="symbols" checked> !@#$ (Symbols)</label>
+        </div>
+
+        <button type="submit">⚡ Generate Password</button>
+    </form>
+
+    {% if password %}
+    <div class="output">
+        <p><strong>Your Password:</strong></p>
+
+        <div class="password-box">
+            <input type="text" id="password" value="{{ password }}" readonly>
+            <button class="copy-btn" onclick="copyPassword()">📋</button>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function copyPassword() {
+    const pass = document.getElementById("password");
+    pass.select();
+    pass.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(pass.value);
+    alert("✅ Password copied!");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+from flask import Flask, request, render_template
+import string
+import secrets
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+def home():
+    password = ""
+    strength = ""
+    crack_time = ""
+
+    if request.method == "POST":
+        length = int(request.form["length"])
+
+        use_upper = request.form.get("uppercase")
+        use_digits = request.form.get("digits")
+        use_symbols = request.form.get("symbols")
+
+        # Always include lowercase
+        alph = string.ascii_lowercase
+
+        if use_upper:
+            alph += string.ascii_uppercase
+        if use_digits:
+            alph += string.digits
+        if use_symbols:
+            alph += string.punctuation
+
+        if length < 8:
+            password = "Password must be at least 8 characters"
+        else:
+            password = ''.join(secrets.choice(alph) for _ in range(length))
+
+            # 🔥 Strength calculation
+            score = 0
+            if length >= 8: score += 1
+            if use_upper: score += 1
+            if use_digits: score += 1
+            if use_symbols: score += 1
+
+            if score <= 2:
+                strength = "Weak"
+                crack_time = "Few seconds"
+            elif score == 3:
+                strength = "Medium"
+                crack_time = "Few hours"
+            else:
+                strength = "Strong"
+                crack_time = "Years"
+
+    return render_template(
+        "index.html",
+        password=password,
+        strength=strength,
+        crack_time=crack_time
+    )
+
+if __name__ == "__main__":
+    app.run(debug=True)

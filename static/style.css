@@ -1,0 +1,97 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe, #43e97b);
+    background-size: 300% 300%;
+    animation: gradientBG 10s ease infinite;
+    color: #333;
+    text-align: center;
+    margin-top: 80px;
+}
+
+/* Background animation */
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* Glass container */
+.container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 15px;
+    width: 380px;
+    margin: auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Title */
+h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Input styling */
+input[type="number"] {
+    padding: 10px;
+    margin: 10px;
+    width: 100px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Input focus glow */
+input[type="number"]:focus {
+    box-shadow: 0 0 10px #00f2fe;
+}
+
+/* Button */
+button {
+    background: linear-gradient(45deg, #0072ff, #00c6ff);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+/* Button hover effect */
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #00c6ff;
+}
+
+/* Output */
+.output {
+    margin-top: 20px;
+}
+
+/* Password box */
+#password {
+    width: 85%;
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+/* Copy button */
+.copy-btn {
+    background: #43e97b;
+    margin-top: 10px;
+}
+
+.copy-btn:hover {
+    background: #38d39f;
+}
